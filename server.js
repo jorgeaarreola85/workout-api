@@ -22,7 +22,7 @@ app.get('/', (request, response)=>{
 })
 
 app.get('/api/:workoutName', (request, response)=>{
-    const workoutNames = request.params.workoutName
+    const workoutNames = request.params.workoutName.toLowerCase
     if(workouts[workoutNames]){
         response.json(workouts[workoutNames])
     }else{
@@ -30,6 +30,6 @@ app.get('/api/:workoutName', (request, response)=>{
     }
 })
 
-app.listen(PORT, ()=>{
+app.listen(process.env.PORT || PORT, ()=>{
     console.log(`the server is running on ${PORT}! You better go catch it!`)
 })
